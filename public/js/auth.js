@@ -1,28 +1,32 @@
-        console.log(window.location.hostname.includes('localhost'))
+        const miFormulario = document.querySelector('form');
 
-        var url = ( window.location.hostname.includes('localhost') )
-                    ? 'http://localhost:8080/api/auth/google'
-                    : 'https://restserver-curso-fher.herokuapp.com/api/auth/google';
+
+
+        const url = ( window.location.hostname.includes('localhost') )
+                    ? 'http://localhost:8080/api/auth/'
+                    : 'https://restserver-curso-fher.herokuapp.com/api/auth/';
 
 
         function onSignIn(googleUser) {
 
             var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            //  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            // console.log('Name: ' + profile.getName());
+            // console.log('Image URL: ' + profile.getImageUrl());
+            // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
             var id_token = googleUser.getAuthResponse().id_token;
             const data = { id_token };
 
-            fetch( url, {
+            fetch( url + 'google' , {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify( data )
             })
             .then( resp => resp.json() )
-            .then( data => console.log( 'Nuestro server', data ) )
+            .then( ( { token } ) => {
+                localStorage.setItem( 'token', token );
+            } )
             .catch( console.log );
             
         }

@@ -16,13 +16,30 @@
                 <h1>Google Signin</h1>
                 <hr>
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <a href="#" onclick="signOut();">Sign out</a>
             </div>
-            <div class="col-sm-6" ></div>
+            
+                
         </section>
     </header>
 
     <main>
 
+        <h1 class="mt-5" >Login</h1>
+        <hr>
+        <form action=""  class="col-sm-6 mt-5" >
+
+            <label for="correo" class="mb-2" >Correo</label>
+            <input type="text" class="form-control mb-2" name="correo"  id="correo">
+
+            <label for="password" class="mb-2">Contraseña</label>
+            <input type="password" class="form-control mb-2" name="password"  id="password">
+
+
+            <button type="submit" class="btn btn-primary" >Ingresar</button>
+
+
+        </form>
 
         
     </main>
@@ -30,7 +47,7 @@
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-    <a href="#" onclick="signOut();">Sign out</a>
+    
 
     <script src="js/auth.js" async defer></script>
 
